@@ -2,9 +2,6 @@ import React, {useState} from 'react';
 import Header from './Header';
 import TextInput from '../components/TextInput';
 
-/*
-Page Template index that uses
- */
 const Index = () => {
     const [userTextInput, setUserTextInput] = useState({text: ''});
 

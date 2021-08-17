@@ -7,7 +7,6 @@ const webpackConfig = process.env.NODE_ENV === 'production' ? createWebpackProdC
 
 
 module.exports = {
-    components:  'src/**/[A-Z]*.js',
     webpackConfig,
     require: [
         path.join(__dirname, './src/index.css')
