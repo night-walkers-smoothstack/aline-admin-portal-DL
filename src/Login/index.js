@@ -15,7 +15,7 @@ const Index = () => {
     const onSubmit = async (e) => {
         e.preventDefault(); //prevents username & pwd to appear in url when submitting
 
-        if (userDetails.username === '' && userDetails.password === '') {
+        if (userDetails.username === '' || userDetails.password === '') {
             setOnError({visibility: '', msg: 'Please enter credentials.'})
             return;
         }
@@ -51,6 +51,7 @@ const Index = () => {
                             </div>
                             <form className='text-center space-y-6' onSubmit={onSubmit}>
                                 <div id='LoginError'
+                                     data-testid='loginError'
                                      className={`text-red-500 ${onError.visibility}`}>{onError.msg}</div>
                                 <div className='relative'>
                                     <input type='text'
@@ -61,6 +62,7 @@ const Index = () => {
                                            id='username'
                                            value={userDetails.username}
                                            onChange={onChange}
+                                           data-testid='username'
                                     />
                                     <label htmlFor='username' className='absolute left-0 -top-3.5 text-gray-600 text-sm
                         transition-all peer-placeholder-shown:text-base peer-placeholder-show:text-gray-40
@@ -78,6 +80,7 @@ const Index = () => {
                                            id='password'
                                            value={userDetails.password}
                                            onChange={onChange}
+                                           data-testid='password'
                                     />
                                     <label htmlFor='password' className='absolute left-0 -top-3.5 text-gray-600 text-sm
                         transition-all peer-placeholder-shown:text-base peer-placeholder-show:text-gray-40
@@ -86,7 +89,7 @@ const Index = () => {
                                     </label>
                                 </div>
 
-                                <input type='submit' value='Sign in' className='mt-20 font-semibold w-full block rounded-lg p-2 bg-blue-500 hover:bg-blue-400 text-white
+                                <input type='submit' value='Sign in' data-testid='loginSubmit' className='mt-20 font-semibold w-full block rounded-lg p-2 bg-blue-500 hover:bg-blue-400 text-white
                     focus:outline-none focus:ring-offset-1 focus:ring focus:ring-blue-500 focus:ring-opacity-80 cursor-pointer '/>
                             </form>
                         </div>
