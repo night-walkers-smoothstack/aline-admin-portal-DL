@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import API from '../utils/API';
 import {Redirect} from 'react-router-dom';
+import TextInput from '../components/TextInput';
 
 const Index = () => {
     const [userDetails, setUserDetails] = useState({username: '', password: ''})
@@ -53,41 +54,10 @@ const Index = () => {
                                 <div id='LoginError'
                                      data-testid='loginError'
                                      className={`text-red-500 ${onError.visibility}`}>{onError.msg}</div>
-                                <div className='relative'>
-                                    <input type='text'
-                                           name='username'
-                                           className='peer h-10 w-full border-b-2 border-gray-300 placeholder-transparent
-                               focus:outline-none focus:border-blue-700'
-                                           placeholder='username'
-                                           id='username'
-                                           value={userDetails.username}
-                                           onChange={onChange}
-                                           data-testid='username'
-                                    />
-                                    <label htmlFor='username' className='absolute left-0 -top-3.5 text-gray-600 text-sm
-                        transition-all peer-placeholder-shown:text-base peer-placeholder-show:text-gray-40
-                        peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm'>
-                                        Username
-                                    </label>
-                                </div>
 
-                                <div className='relative'>
-                                    <input type='password'
-                                           name='password'
-                                           className='peer h-10 w-full border-b-2 border-gray-300 placeholder-transparent
-                               focus:outline-none focus:border-blue-700'
-                                           placeholder='password'
-                                           id='password'
-                                           value={userDetails.password}
-                                           onChange={onChange}
-                                           data-testid='password'
-                                    />
-                                    <label htmlFor='password' className='absolute left-0 -top-3.5 text-gray-600 text-sm
-                        transition-all peer-placeholder-shown:text-base peer-placeholder-show:text-gray-40
-                        peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm'>
-                                        Password
-                                    </label>
-                                </div>
+                                <TextInput id='username' value={userDetails.username} onChange={onChange} label='Username' />
+
+                                <TextInput id='password' value={userDetails.password} onChange={onChange} label='Password' type='password'/>
 
                                 <input type='submit' value='Sign in' data-testid='loginSubmit' className='mt-20 font-semibold w-full block rounded-lg p-2 bg-blue-500 hover:bg-blue-400 text-white
                     focus:outline-none focus:ring-offset-1 focus:ring focus:ring-blue-500 focus:ring-opacity-80 cursor-pointer '/>
