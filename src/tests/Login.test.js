@@ -3,6 +3,7 @@ import {act, cleanup, render, screen} from '@testing-library/react';
 import Login from '../Login'
 import userEvent from '@testing-library/user-event';
 import axiosMock from 'axios';
+import renderWithRouter from './utils/RenderWithRouter';
 
 jest.mock('axios')
 
@@ -51,10 +52,64 @@ describe('Login page should', () => {
             const submitBtn = screen.getByTestId('loginSubmit')
             userEvent.click(submitBtn)
         })
+        const ErrorMessageEl = screen.getByTestId('loginError')
 
-        expect(screen.getByTestId('loginError')).toBeVisible();
-        expect(screen.getByTestId('loginError').textContent).toBe('Invalid Credentials')
+        expect(ErrorMessageEl).toBeVisible();
+        expect(ErrorMessageEl.textContent).toBe('Invalid Credentials')
 
     })
+
+    it('render server error message when response status is 500 series', async () => {
+        axiosMock.post.mockResolvedValue(
+            {
+                status: 500,
+                message: 'Oops! We\'re checking what the problem is.'
+            })
+
+        render(<Login/>)
+
+        const usernameInput = screen.getByTestId('username');
+        const passwordInput = screen.getByTestId('password');
+        userEvent.type(usernameInput, 'admin');
+        userEvent.type(passwordInput, 'password');
+        await act(async () => {
+            const submitBtn = screen.getByTestId('loginSubmit')
+            userEvent.click(submitBtn);
+            expect(axiosMock.post).toHaveBeenCalled()
+        })
+
+        const ErrorMessageEl = screen.getByTestId('loginError')
+
+        expect(ErrorMessageEl).toBeVisible();
+        expect(ErrorMessageEl.textContent).toBe('Oops! We\'re checking what the problem is.')
+
+    })
+
+    it('redirect on successful login with authorization token in header response', async () => {
+        axiosMock.post.mockResolvedValue(
+            {
+                status: 200,
+                headers: {
+                    Authorization: 'Bearer 123456'
+                }
+            })
+
+        const {history} = renderWithRouter(<Login/>)
+
+        userEvent.type(screen.getByTestId('username'), 'admin');
+        userEvent.type(screen.getByTestId('password'), 'password');
+        await act(async () => {
+            const submitBtn = screen.getByTestId('loginSubmit')
+            userEvent.click(submitBtn)
+
+            expect(axiosMock.post).toHaveBeenCalledWith('/api/login', {
+                'username': 'admin',
+                'password': 'password'
+            });
+        })
+
+        expect(history.location.pathname).toEqual('/');
+    })
+
 
 })

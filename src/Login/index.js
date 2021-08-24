@@ -26,8 +26,8 @@ const Index = () => {
             if (res.status === 200) setOnSuccess({Redirect: '/'})
             else setOnError({visibility: '', msg: res.message})
 
-        } catch (e) {
-            console.log('Error in OnSubmit login: ', e)
+        } catch (error) {
+            console.log('Error in OnSubmit login: ', error)
         }
 
     }
