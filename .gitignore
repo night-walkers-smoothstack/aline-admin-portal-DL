@@ -8,6 +8,7 @@
 # testing
 /coverage
 /.scannerwork
+test-report.xml
 
 # production
 /build
