@@ -8,9 +8,8 @@ sonarqubeScanner({
         'sonar.sources': 'src',
         'sonar.tests': 'src/tests',
         'sonar.inclusions': 'src/**/*.js', // Entry point of your code
-        'sonar.test.inclusions': 'src/**/*.test.jsx',
         'sonar.exclusions': 'src/tests/**, src/setupTests.js'
     },
 }, () => {
-    console.log('Scan Complete');
+    console.log('Scanner Shutdown');
 });

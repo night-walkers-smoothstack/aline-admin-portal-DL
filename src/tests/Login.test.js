@@ -111,5 +111,22 @@ describe('Login page should', () => {
         expect(history.location.pathname).toEqual('/');
     })
 
+    it('renders error message when an error occurs with axios call', async () => {
+        const networkError = new Error('Network not available');
+        axiosMock.post.mockRejectedValue(networkError)
+
+        render(<Login/>)
+
+        userEvent.type(screen.getByTestId('username'), 'admin');
+        userEvent.type(screen.getByTestId('password'), 'password');
+        const submitBtn = screen.getByTestId('loginSubmit')
+
+        await act(async () =>{
+            userEvent.click(submitBtn)
+        })
+
+        expect(screen.getByText('Oops, there seems to be an error!')).toBeVisible();
+
+    })
 
 })
