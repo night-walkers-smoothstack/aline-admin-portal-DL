@@ -7,10 +7,11 @@ sonarqubeScanner({
     options: {
         'sonar.sources': 'src',
         'sonar.tests': 'src/tests',
-        'sonar.inclusions': 'src/**/*.js', // Entry point of your code
+        'sonar.inclusions': 'src/**/*.js',
         'sonar.exclusions': 'src/tests/**, src/setupTests.js',
         'sonar.testExecutionReportPaths': 'test-report.xml',
-        'sonar.eslint.reportPaths':'eslint-report.json'
+        'sonar.eslint.reportPaths':'eslint-report.json',
+        'sonar.javascript.lcov.reportPaths': 'coverage/lcov.info'
     },
 }, () => {
     console.log('Scanner Shutdown');

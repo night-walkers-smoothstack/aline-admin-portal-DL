@@ -24,6 +24,7 @@
     "test": "craco test",
     "test:noWatch":"npm run test -- --watchAll=false",
     "test:coverage": "craco test --watchAll=false --coverage --testResultsProcessor jest-sonar-reporter",
+    "test:lintReport": "eslint -f json -o eslint-report.json .",
     "eject": "react-scripts eject",
     "styleguide": "styleguidist server",
     "styleguide:build": "styleguidist build",
@@ -45,6 +46,10 @@
       ]
     }
   },
+  "eslintIgnore": [
+    "node_modules",
+    "build"
+  ],
   "browserslist": {
     "production": [
       ">0.2%",
