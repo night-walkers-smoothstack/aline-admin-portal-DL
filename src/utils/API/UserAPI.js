@@ -1,6 +1,6 @@
 import axios from '../axiosCustom';
 
-const APIs =  {
+const UserAPI =  {
 
     /**
      * User Login API:<br/>
@@ -22,4 +22,4 @@ const APIs =  {
     }
 }
 
-export default APIs;
+export default UserAPI;

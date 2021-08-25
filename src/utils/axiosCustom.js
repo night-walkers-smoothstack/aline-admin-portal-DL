@@ -4,11 +4,11 @@ const token = localStorage.getItem(process.env.REACT_APP_TOKEN_NAME)
 /**
  * Axios instance with baseURL and custom configurations
  */
-const newAxios = axios.create({
+const axiosCustom = axios.create({
     baseURL: `${process.env.REACT_APP_API_BASEURL}`
 })
 
-newAxios.interceptors.request.use(
+axiosCustom.interceptors.request.use(
     request => {
         if(request.url.includes('api')) request.headers['Authorization'] = token;
         return request;
@@ -18,4 +18,4 @@ newAxios.interceptors.request.use(
     }
 );
 
-export default newAxios;
+export default axiosCustom;

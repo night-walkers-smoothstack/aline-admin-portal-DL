@@ -1,4 +1,4 @@
-import User from './User';
+import User from './UserAPI';
 
 const API = {
     User
