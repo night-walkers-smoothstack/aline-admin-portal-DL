@@ -1,10 +1,9 @@
-import React from 'react'
 import * as ReactDOM from 'react-dom';
 
 jest.mock('react-dom', () => ({render: jest.fn()}));
 
-describe('Index.jsx smoke test', () => {
-    it('should render app', () => {
+describe('Index smoke test', () => {
+    it('should render index', () => {
         const div = document.createElement('div');
         div.id = 'root';
         document.body.appendChild(div);

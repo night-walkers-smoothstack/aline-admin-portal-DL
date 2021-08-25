@@ -28,7 +28,6 @@ const Index = () => {
 
         } catch (error) {
             setOnError({visibility: '', msg: 'Oops, there seems to be an error!'})
-            console.log('Error in OnSubmit login: ', error)
         }
 
     }

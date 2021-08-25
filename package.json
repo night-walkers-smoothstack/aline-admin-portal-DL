@@ -25,6 +25,7 @@
     "test:noWatch":"npm run test -- --watchAll=false",
     "test:coverage": "craco test --watchAll=false --coverage --testResultsProcessor jest-sonar-reporter",
     "test:lintReport": "eslint -f json -o eslint-report.json .",
+    "test:CI": "npm run test:coverage && npm run test:lintReport && npm run sonar",
     "eject": "react-scripts eject",
     "styleguide": "styleguidist server",
     "styleguide:build": "styleguidist build",

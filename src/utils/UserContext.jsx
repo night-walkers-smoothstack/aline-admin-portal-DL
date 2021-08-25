@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
  * Context for User Session to be used throughout the application
  * @type {React.Context<{logoutMethod: logoutMethod, expired: boolean, loggedIn: boolean, authorities: {}, token: string}>}
  */
-const UserSessionContext = createContext({
+export const UserSessionContext = createContext({
     authorities: {},
     logoutMethod: () => {
     },
@@ -16,7 +16,7 @@ const UserSessionContext = createContext({
 })
 
 /** Context to hold method to update UserContext*/
-const UpdateUserSessionContext = createContext({
+export const UpdateUserSessionContext = createContext({
     updateUser: () => {
     }
 })

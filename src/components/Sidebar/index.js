@@ -21,11 +21,11 @@ const Sidebar = ({children}) => {
     return (
         <div className='relative min-h-screen md:flex'>
             {/*Mobile Menu*/}
-            <div className='bg-blue-700 text-gray-100 flex justify-between md:hidden'>
+            <div className='bg-blue-700 text-gray-100 flex justify-between md:hidden' data-testid='mobileMenu'>
                 {/*Logo*/}
-                <a href='/' className='block p-4 text-white font-bold'>Aline</a>
+                <a href='/' data-testid='sidebarA' className='block p-4 text-white font-bold'>Aline</a>
                 {/*Hamburger button*/}
-                <button className='p-4 focus:outline-none focus:bg-gray-700' onClick={onClick}>
+                <button className='p-4 focus:outline-none focus:bg-gray-700' onClick={onClick} data-testid='mobileToggleB'>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
@@ -36,7 +36,7 @@ const Sidebar = ({children}) => {
             <div className={`sidebar bg-blue-800 text-blue-100 w-64 space-y-6 px-2 py-7 px-2 absolute inset-y-0 left-0 transform
             duration-200 ease-in-out md:translate-x-0 md:relative ${transition.transition}`}>
                 {/*Mobile close button*/}
-                <button className='md:hidden p-1 m-2 right-0 top-0 absolute' onClick={onClick}>
+                <button className='md:hidden p-1 m-2 right-0 top-0 absolute' onClick={onClick} data-testid='mobileToggle'>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
