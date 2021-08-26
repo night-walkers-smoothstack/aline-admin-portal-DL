@@ -7,7 +7,7 @@ import Home from '../Home'
 
 afterEach(cleanup)
 
-describe('Protected Route shou1d', () => {
+describe('Protected Route shou1d use the UserSessionContext and', () => {
     afterEach(() => {
         jest.restoreAllMocks();
     })
