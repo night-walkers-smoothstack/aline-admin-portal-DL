@@ -44,11 +44,12 @@ const Index = ({children}) => {
     return (
         <div className='d-flex flex-md-row flex-column  position-relative'>
             {/*Mobile*/}
-            <nav className='d-flex navbar w-100 navbar-dark bg-dark d-md-none '>
+            <nav className='d-flex navbar w-100 navbar-dark bg-dark d-md-none ' data-testid='mobileMenu'>
                 <div className='container-fluid'>
                     <a href='/' className='navbar-brand'>Aline</a>
                     <button className='navbar-toggler'
                             onClick={handleToggle}
+                            data-testid='mobileToggle'
                     >
                         <span className='navbar-toggler-icon'/>
                     </button>

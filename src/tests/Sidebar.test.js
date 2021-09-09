@@ -1,5 +1,5 @@
 import {cleanup, render, screen} from '@testing-library/react';
-import Sidebar from '../components/Sidebar/TWindex';
+import Sidebar from '../components/Sidebar';
 import {MemoryRouter} from 'react-router-dom';
 import renderWithRouter from './utils/RenderWithRouter';
 import userEvent from '@testing-library/user-event';
@@ -38,14 +38,11 @@ describe('Sidebar should', () =>{
             </MemoryRouter>
         )
 
+
         userEvent.click(screen.getByTestId('mobileToggle'))
         expect(screen.getByText('Home')).toBeVisible();
         expect(screen.getByText('Aline Financial')).toBeVisible();
 
-        expect(screen.getByTestId('mobileToggleB')).toBeVisible();
-
-        userEvent.click(screen.getByTestId('mobileToggleB'));
-        expect(screen.getByTestId('mobileToggle')).toBeVisible()
     })
 
 })
