@@ -5,6 +5,7 @@ import Home from './Home'
 import Login from './Login'
 import UserSessionProvider from './utils/UserContext';
 import ProtectedRoute from './components/ProtectedRoute';
+import 'bootstrap/dist/js/bootstrap.bundle.min'
 
 function App() {
     return (
@@ -15,9 +16,7 @@ function App() {
                         <Route path='/login' component={Login}/>
 
                         <Sidebar>
-                            <div className='p-10 flex-1'>
-                                <ProtectedRoute path='/' component={Home}/>
-                            </div>
+                            <ProtectedRoute path='/' component={Home}/>
                         </Sidebar>
 
                     </Switch>

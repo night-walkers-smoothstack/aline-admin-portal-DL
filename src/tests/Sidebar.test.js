@@ -1,5 +1,5 @@
 import {cleanup, render, screen} from '@testing-library/react';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../components/Sidebar/TWindex';
 import {MemoryRouter} from 'react-router-dom';
 import renderWithRouter from './utils/RenderWithRouter';
 import userEvent from '@testing-library/user-event';
