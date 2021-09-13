@@ -1,8 +1,8 @@
 import React from 'react';
-import Sidebar from './components/Sidebar';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import Home from './Home'
-import Login from './Login'
+import Home from './pages/Home'
+import Login from './pages/Login'
+import NotFound from './pages/NotFound';
 import UserSessionProvider from './utils/UserContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import 'bootstrap/dist/js/bootstrap.bundle.min'
@@ -13,12 +13,9 @@ function App() {
             <UserSessionProvider>
                 <Router>
                     <Switch>
-                        <Route path='/login' component={Login}/>
-
-                        <Sidebar>
-                            <ProtectedRoute path='/' component={Home}/>
-                        </Sidebar>
-
+                        <Route exact path='/login' component={Login}/>
+                        <ProtectedRoute exact path='/' component={Home}/>
+                        <Route path='*' component={NotFound}/>
                     </Switch>
 
                 </Router>

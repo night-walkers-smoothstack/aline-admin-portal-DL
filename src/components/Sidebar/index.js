@@ -104,7 +104,7 @@ const Index = ({children}) => {
 
             </div>
 
-            <div ref={contentRef} className='d-flex flex-grow-1 content'>
+            <div ref={contentRef} className='flex-grow-1 content is-nav-open'>
                 {children}
             </div>
 

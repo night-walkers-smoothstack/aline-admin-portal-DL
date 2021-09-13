@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Redirect, Route} from 'react-router-dom';
+import Sidebar from '../Sidebar'
 import {UpdateUserSession, UseUserSession} from '../../utils/UserContext';
 
 /**
@@ -25,6 +26,7 @@ const ProtectedRoute = ({component: Component, ...rest}) => {
             {loading ? (
                 <div>I'm Loading</div>
             ) : (
+                <Sidebar>
                 <Route
                     {...rest}
                     render={(props) =>
@@ -34,6 +36,7 @@ const ProtectedRoute = ({component: Component, ...rest}) => {
                             (<Component {...props} />)
                     }
                 />
+                </Sidebar>
             )}
 
         </div>

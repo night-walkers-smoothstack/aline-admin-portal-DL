@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import API from '../utils/API';
+import API from '../../utils/API';
 import {Redirect} from 'react-router-dom';
-import TextInput from '../components/TextInput';
+import TextInput from '../../components/TextInput';
 import './login.css'
 
 const Index = () => {

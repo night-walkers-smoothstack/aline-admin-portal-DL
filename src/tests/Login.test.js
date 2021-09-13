@@ -1,6 +1,6 @@
 import React from 'react';
 import {act, cleanup, render, screen} from '@testing-library/react';
-import Login from '../Login'
+import Login from '../pages/Login'
 import userEvent from '@testing-library/user-event';
 import axiosMock from 'axios';
 import renderWithRouter from './utils/RenderWithRouter';
