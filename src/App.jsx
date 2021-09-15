@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Home from './pages/Home'
 import Login from './pages/Login'
 import NotFound from './pages/NotFound';
+import UserForm from './pages/UserForm'
 import Users from './pages/Users'
 import UserSessionProvider from './utils/UserContext';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -20,6 +21,7 @@ function App() {
                     <Switch>
                         <Route exact path='/login' component={Login}/>
                         <ProtectedRoute exact path='/' component={Home}/>
+                        <ProtectedRoute path='/user/create' component={UserForm}/>
                         <ProtectedRoute path='/user' component={Users}/>
                         <Route path='*' component={NotFound}/>
                     </Switch>

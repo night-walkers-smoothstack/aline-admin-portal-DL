@@ -1,16 +1,32 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {useEffect, useState} from 'react';
+import {useLocation} from 'react-router-dom';
+import AdminForm from './AdminForm';
 
-const Index = props => {
+const Index = () => {
+    const [formType, setFormType] = useState()
+    let location = useLocation();
+
+    useEffect(() => {
+
+        switch (location.state.userType) {
+            case 'admin':
+                setFormType(<AdminForm/>)
+                break;
+            case 'employee':
+                break;
+            case 'member':
+                break;
+            default:
+                break;
+        }
+
+    }, [location])
+
     return (
-        <div>
-
+        <div className='w-75 mx-auto'>
+            {formType}
         </div>
     );
-};
-
-Index.propTypes = {
-    
 };
 
 export default Index;

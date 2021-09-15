@@ -8,17 +8,16 @@ const Index = ({modalId, title, children, footer}) => {
     }
 
     return (
-        <div className="modal fade" id={modalId} data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1"
+        <div className='modal fade' id={modalId} data-bs-backdrop='static' data-bs-keyboard="false" tabIndex="-1"
              aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title" id="staticBackdropLabel">{title}</h5>
+                        <h5 className="modal-title" id="modal-title">{title}</h5>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"/>
                     </div>
                     <div className="modal-body text-center">
                         {children}
-
                     </div>
                     <div className="modal-footer">
                         {footer? footer : <DefaultFooter/>}

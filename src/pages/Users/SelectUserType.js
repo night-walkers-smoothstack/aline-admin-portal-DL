@@ -11,10 +11,10 @@ export const SelectUserType = () => {
         setRedirectStatus({
             to: {
                 pathname: '/user/create',
-                state:{userType: e.target.value}
+                state: {userType: e.target.value}
             },
-        isRedirect: true
-    })
+            isRedirect: true
+        })
     }
 
     return (
@@ -22,9 +22,15 @@ export const SelectUserType = () => {
             {
                 !redirectStatus.isRedirect ? (
                         <div>
-                            <button className='btn-primary btn' type='button' value='admin' onClick={onClick}>Admin</button>
-                            <button className='btn-primary btn mx-2 my-2 my-md-0' type='button' value='employee' onClick={onClick}>Employee</button>
-                            <button className='btn-primary btn' type='button' value='member' onClick={onClick}>Member</button>
+                            <button className='btn-primary btn' type='button' value='admin' data-bs-dismiss='modal'
+                                    onClick={onClick}>Admin
+                            </button>
+                            <button className='btn-primary btn mx-2 my-2 my-md-0' type='button' data-bs-dismiss='modal'
+                                    value='employee' onClick={onClick}>Employee
+                            </button>
+                            <button className='btn-primary btn' type='button' value='member' data-bs-dismiss='modal'
+                                    onClick={onClick}>Member
+                            </button>
                         </div>
                     ) :
                     <Redirect push to={redirectStatus.to}/>
