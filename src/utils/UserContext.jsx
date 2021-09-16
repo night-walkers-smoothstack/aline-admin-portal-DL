@@ -63,7 +63,7 @@ export default function UserSessionProvider({children}) {
 
                 setToken({
                     jwt: fullToken,
-                    authority: decodedJWT.authorities[0].authority,
+                    authority: decodedJWT.authority,
                     expired: isExpired,
                     loggedIn: isLoggedIn
                 })
