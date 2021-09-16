@@ -7,17 +7,21 @@ const Index = () => {
     let location = useLocation();
 
     useEffect(() => {
-
-        switch (location.state.userType) {
-            case 'admin':
-                setFormType(<AdminForm/>)
-                break;
-            case 'employee':
-                break;
-            case 'member':
-                break;
-            default:
-                break;
+        if(location?.state?.userType) {
+            switch (location.state.userType) {
+                case 'admin':
+                    setFormType(<AdminForm/>)
+                    break;
+                case 'employee':
+                    break;
+                case 'member':
+                    break;
+                default:
+                    break;
+            }
+        }
+        else{
+            setFormType(<div className='display-4 mt-4'>Unable to create user please go to the Users page</div>)
         }
 
     }, [location])
