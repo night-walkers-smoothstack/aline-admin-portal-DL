@@ -1,11 +1,40 @@
 import React from 'react';
 import Form from '../../components/Form'
 import schema from '../../utils/Validation/AdminForm'
+import API from '../../utils/API';
+import withReactContent from 'sweetalert2-react-content';
+import Swal from 'sweetalert2';
 
-const AdminForm = props => {
-    const onSubmit = data => {
+const AdminForm = () => {
+    const MySwal = withReactContent(Swal);
+
+    const onSubmit = async (data) => {
         const reqBody = {...data, role: 'admin'}
-        console.log('reqBody: ',  reqBody)
+
+        try {
+            const res = await API.User.create(reqBody)
+            if(res.status===201){
+                await MySwal.fire({
+                    title: <strong>Success</strong>,
+                    html: <p>Admin user created</p>,
+                    icon: 'success',
+                })
+            }else {
+                await MySwal.fire({
+                    title: <strong>Oops!</strong>,
+                    html: <p>{res.message || 'We\'re checking out what went wrong' }</p>,
+                    icon: 'error',
+                })
+            }
+        }catch (e){
+            await MySwal.fire({
+                title: <strong>Oops!</strong>,
+                html: <p>Please check your network</p>,
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
     }
 
     const data = [
@@ -49,7 +78,5 @@ const AdminForm = props => {
         </div>
     );
 };
-
-AdminForm.propTypes = {};
 
 export default AdminForm;

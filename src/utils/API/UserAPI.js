@@ -19,6 +19,14 @@ const UserAPI =  {
             else return new Error('Oops! We\'re checking what the problem is.')
         }
 
+    },
+    create: async function (userDetails) {
+        try {
+            return await axios.post('/api/users/registration', userDetails)
+        } catch (e) {
+            const errorMsg = e?.response?.data[0] || e.message()
+            return new Error(errorMsg)
+        }
     }
 }
 

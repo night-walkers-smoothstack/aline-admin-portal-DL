@@ -6,7 +6,7 @@ import FormPhoneInput from './FormPhoneInput';
 import FormEmailInput from './FormEmailInput';
 import {yupResolver} from '@hookform/resolvers/yup';
 
-const Index = ({data, onSubmit, validationSchema}) => {
+const Index = ({data, onSubmit, validationSchema, children}) => {
     const [formBody, setFormBody] = useState();
     const methods = useForm({resolver: yupResolver(validationSchema), criteriaMode:'all',mode:'all', reValidateMode:'onChange'})
 
@@ -17,9 +17,9 @@ const Index = ({data, onSubmit, validationSchema}) => {
                 case 'text':
                     return <FormTextInput data={question} key={question.id}/>
                 case 'phone':
-                    return <FormPhoneInput data={question} key={index}/>
+                    return <FormPhoneInput data={question} key={question.id}/>
                 case 'email':
-                    return <FormEmailInput data={question} key={index}/>
+                    return <FormEmailInput data={question} key={question.id}/>
                 default:
                     return <div>Need to create type for Form component</div>
             }
@@ -32,7 +32,8 @@ const Index = ({data, onSubmit, validationSchema}) => {
         <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit(onSubmit)} className='text-center' noValidate>
                 {formBody}
-                <input type='submit' className='btn btn-primary '/>
+                {children}
+                {<input type='submit' className='btn btn-primary '/>}
             </form>
         </FormProvider>
 
