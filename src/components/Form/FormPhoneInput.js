@@ -1,7 +1,13 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
+import {useFormContext} from 'react-hook-form';
 
-const FormPhoneInput = ({id, formInputProp, label}) => {
+const FormPhoneInput = ({data}) => {
+    const {register, formState: {errors}} = useFormContext();
+    const {
+        id, label
+    } = data;
+
     const [inputValue, setInputValue] = useState('');
 
     const formatPhoneNumber = (phone) => {
@@ -23,28 +29,31 @@ const FormPhoneInput = ({id, formInputProp, label}) => {
         const formattedNumber = formatPhoneNumber(e.target.value);
         setInputValue(formattedNumber)
     }
-
     return (
-        <div className='form-floating my-2'>
-            <input
-                id={id}
-                name={id}
-                type='tel'
-                className='form-control rounded-1'
-                {...formInputProp}
-                placeholder={label}
-                onChange={handleInput}
-                value={inputValue}
-            />
-            <label htmlFor={id}>{label}</label>
+        <div>
+            <div className='form-floating mt-2 mb-0'>
+                <input
+                    {...register(id, {required: true})}
+                    id={id}
+                    name={id}
+                    type='tel'
+                    className='form-control rounded-1'
+                    placeholder={label}
+                    onChange={handleInput}
+                    value={inputValue}
+                />
+                <label htmlFor={id}>{label}</label>
+                <p className='text-danger small mt-1 text-start'>{errors[id]?.message}</p>
+            </div>
         </div>
+
     );
 };
 
 FormPhoneInput.propTypes = {
-    id: PropTypes.string,
+    data: PropTypes.object,
     formInputProp: PropTypes.any,
-    label: PropTypes.string
+    error: PropTypes.object
 };
 
 export default FormPhoneInput;

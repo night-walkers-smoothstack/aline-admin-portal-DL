@@ -1,48 +1,48 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import {useForm} from 'react-hook-form';
+import {useForm, FormProvider} from 'react-hook-form';
 import FormTextInput from './FormTextInput';
 import FormPhoneInput from './FormPhoneInput';
 import FormEmailInput from './FormEmailInput';
+import {yupResolver} from '@hookform/resolvers/yup';
 
-const Index = ({data, onSubmit}) => {
+const Index = ({data, onSubmit, validationSchema}) => {
     const [formBody, setFormBody] = useState();
-    const {register, handleSubmit} = useForm();
+    const methods = useForm({resolver: yupResolver(validationSchema), criteriaMode:'all',mode:'all', reValidateMode:'onChange'})
 
     useEffect(() => {
         const body = data.map((question, index) => {
             switch (question.type) {
                 case 'password':
                 case 'text':
-                    return <FormTextInput type={question.type} id={question.id}
-                                          formInputProp={register(question.id, question.options)}
-                                          label={question.label} key={index}/>
+                    return <FormTextInput data={question} key={question.id}/>
                 case 'phone':
-                    return <FormPhoneInput id={question.id} formInputProp={register(question.id, question.options)}
-                                           label={question.label} key={index}/>
+                    return <FormPhoneInput data={question} key={index}/>
                 case 'email':
-                    return <FormEmailInput id={question.id} formInputProp={register(question.id, question.options)}
-                                           label={question.label} key={index} />
+                    return <FormEmailInput data={question} key={index}/>
                 default:
                     return <div>Need to create type for Form component</div>
             }
         })
-
         setFormBody(body)
-    }, [data, register])
+    }, [data])
 
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className='text-center'>
-            {formBody}
-            <input type='submit' className='btn btn-primary '/>
-        </form>
+        <FormProvider {...methods}>
+            <form onSubmit={methods.handleSubmit(onSubmit)} className='text-center' noValidate>
+                {formBody}
+                <input type='submit' className='btn btn-primary '/>
+            </form>
+        </FormProvider>
+
     );
 };
 
 Index.propTypes = {
-    data: PropTypes.array,
-    onSubmit: PropTypes.func
+    data: PropTypes.array.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    validationSchema: PropTypes.any.isRequired
 };
 
 export default Index;

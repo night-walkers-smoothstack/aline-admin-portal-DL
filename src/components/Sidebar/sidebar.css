@@ -5,6 +5,7 @@
     -o-transition: margin .5s;
     transition: margin .5s;
     margin:0 0 0 -250px;
+    z-index: 1;
 }
 
 .sidebar.is-nav-open {

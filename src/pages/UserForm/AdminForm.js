@@ -1,46 +1,41 @@
 import React from 'react';
 import Form from '../../components/Form'
+import schema from '../../utils/Validation/AdminForm'
 
 const AdminForm = props => {
     const onSubmit = data => {
         const reqBody = {...data, role: 'admin'}
-        console.log('data: ',  reqBody)
+        console.log('reqBody: ',  reqBody)
     }
 
     const data = [
         {
             id: 'firstName',
-            options: {required: true},
             type: 'text',
             label: 'First Name'
         },
         {
             id: 'lastName',
-            options: {required: true},
             type: 'text',
             label: 'Last name'
         },
         {
             id: 'username',
-            options: {required: true},
             type: 'text',
             label: 'Username'
         },
         {
             id: 'password',
-            options: {required: true},
             type: 'password',
             label: 'Password'
         },
         {
             id: 'phone',
-            options: {required: true},
             type: 'phone',
             label: 'Phone'
         },
         {
-            id:'email',
-            options: {required: true},
+            id: 'email',
             type: 'email',
             label: 'Email'
         }
@@ -49,7 +44,7 @@ const AdminForm = props => {
     return (
         <div>
             <h1 className='display-5 mb-3 mt-5'>Create an Admin</h1>
-            <Form data={data} onSubmit={onSubmit}/>
+            <Form data={data} onSubmit={onSubmit} validationSchema={schema}/>
 
         </div>
     );
