@@ -13,6 +13,7 @@ export const UserSessionContext = createContext({
     loggedIn: false,
     token: '',
     expired: true,
+    user: ''
 })
 
 /** Context to hold method to update UserContext*/
@@ -26,12 +27,13 @@ const userTokenInitialState = {
     authority: {},
     loggedIn: false,
     expired: true,
+    user: ''
 }
 
 /** Custom Hook to retrieve user details */
 export function UseUserSession() {
-    const {authorities, logoutMethod, loggedIn, token, expired} = useContext(UserSessionContext);
-    return {authorities, logoutMethod, loggedIn, token, expired}
+    const {authorities, logoutMethod, loggedIn, token, expired, user} = useContext(UserSessionContext);
+    return {authorities, logoutMethod, loggedIn, token, expired, user}
 }
 
 /** Custom Hook to access function that updates the user context from stored token */
@@ -65,7 +67,8 @@ export default function UserSessionProvider({children}) {
                     jwt: fullToken,
                     authority: decodedJWT.authority,
                     expired: isExpired,
-                    loggedIn: isLoggedIn
+                    loggedIn: isLoggedIn,
+                    user: decodedJWT.sub
                 })
             } catch (e) {
                 setToken({...userTokenInitialState, checkedStorage: true});
@@ -91,6 +94,7 @@ export default function UserSessionProvider({children}) {
                 loggedIn: token.loggedIn,
                 token: token.jwt,
                 expired: token.expired,
+                user: token.user
             }}
         >
             <UpdateUserSessionContext.Provider
