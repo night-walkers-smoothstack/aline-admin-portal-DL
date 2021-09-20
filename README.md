@@ -1,6 +1,32 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Front-end employee portal for the Aline Financial project
+
+##Table of Content
+* [Project Setup](#project-setup)
+  * [Microservices](#microservices)
+* [Available Scripts](#available-scripts)
+* [NPM & Documentation Links](#npm-libraries-and-links-to-documentation)
+
+##Project Setup
+After cloning the repository, and using `npm i` to install the dependencies,
+you need to configure an env with following values
+- `EXTEND_ESLINT: true`
+- `REACT_APP_API_BASEURL`
+- `REACT_APP_TOKEN_NAME`
+- `SONAR_TOKEN`
+- `SONAR_HOST_URL`
+
+Values with the `SONAR` prefix are values from a project setup using Sonarqube.
+
+
+### Microservices
+As part of the Aline Financial project you will need the following repositories installed and running to use all features 
+in the application.
+
+- Config-server
+- Aline-user-microservice
+- Aline-gateway
 
 ## Available Scripts
 
@@ -39,32 +65,12 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## NPM libraries and links to documentation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [Axios](https://axios-http.com/)
+- [Bootstrap](https://getbootstrap.com/)
+- [Sonarqube-scanner](https://www.npmjs.com/package/sonarqube-scanner)
+- [React-hook-form](https://react-hook-form.com/)
+- [React-table](https://react-table.tanstack.com/)
+- [Sweetalert2](https://sweetalert2.github.io/)
+- [Yup](https://www.npmjs.com/package/yup)

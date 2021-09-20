@@ -30,12 +30,11 @@ const Navigation = () => {
 
     return (
         <nav>
-            <NavLink exact to='/' activeClassName='font-bold' className='block py-2.5 px-4 hover:bg-blue-600
-            rounded transition duration-200 hover:text-white'>Home</NavLink>
+            <NavLink exact to='/' activeClassName='font-bold' className='text-white nav-link mb-auto'>Home</NavLink>
             {menu.map(nav => {
                 return (
                     <NavLink key={nav.link} to={nav.link} activeClassName='font-bold'
-                             className='block py-2.5 px-4 hover:bg-blue-600 rounded transition duration-200 hover:text-white'>
+                             className='nav-link text-white '>
                         {nav.display}
                     </NavLink>
                 )

@@ -1,25 +1,29 @@
 import React from 'react';
-import Sidebar from './components/Sidebar';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import Home from './Home'
-import Login from './Login'
+import Home from './pages/Home'
+import Login from './pages/Login'
+import NotFound from './pages/NotFound';
+import UserForm from './pages/UserForm'
+import Users from './pages/Users'
 import UserSessionProvider from './utils/UserContext';
 import ProtectedRoute from './components/ProtectedRoute';
+import 'bootstrap/dist/js/bootstrap.bundle.min'
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {fab} from '@fortawesome/free-brands-svg-icons';
+import {faPlus} from '@fortawesome/free-solid-svg-icons';
 
 function App() {
+    library.add(fab, faPlus)
     return (
         <div>
             <UserSessionProvider>
                 <Router>
                     <Switch>
-                        <Route path='/login' component={Login}/>
-
-                        <Sidebar>
-                            <div className='p-10 flex-1'>
-                                <ProtectedRoute path='/' component={Home}/>
-                            </div>
-                        </Sidebar>
-
+                        <Route exact path='/login' component={Login}/>
+                        <ProtectedRoute exact path='/' component={Home}/>
+                        <ProtectedRoute path='/user/create' component={UserForm}/>
+                        <ProtectedRoute path='/user' component={Users}/>
+                        <Route path='*' component={NotFound}/>
                     </Switch>
 
                 </Router>

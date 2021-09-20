@@ -1,68 +1,121 @@
-import React, {useState} from 'react';
+import React, {createRef, useEffect} from 'react';
 import PropTypes from 'prop-types';
+import './sidebar.css';
 import Navigation from './Navigation';
+import UseWindowSize from '../../utils/useWindowSize';
 
 /**
  * Sidebar navigation for application uses standard styling
  *
  * @param children
  * @returns {JSX.Element}
- * @constructor
  */
-const Sidebar = ({children}) => {
-    const [transition, setTransition] = useState({transition: '-translate-x-full'})
+const Index = ({children}) => {
+    const wrapperRef = createRef();
+    const windowSizes = UseWindowSize();
+    const OPEN_NAV_CLASS = 'is-nav-open';
+    const footerRef = createRef();
+    const contentRef = createRef();
 
-    const onClick = (e) => {
-        e.preventDefault();
-        if (transition.transition==='') setTransition({transition:'-translate-x-full'})
-        else setTransition({transition:''})
+    const handleToggle = () => {
+        const wrapper = wrapperRef.current;
+        wrapper.classList.toggle(OPEN_NAV_CLASS);
     }
 
+    useEffect(() => {
+        const wrapper = wrapperRef.current;
+        const content = contentRef.current;
+        const FOOTER_CLASS = ['position-absolute', 'bottom-0', 'start-50', 'translate-middle'];
+
+        if (windowSizes.width >= 768 && !wrapper.classList.contains(OPEN_NAV_CLASS)) {
+            wrapper.classList.add(OPEN_NAV_CLASS)
+            content.classList.add(OPEN_NAV_CLASS)
+        }
+        if (windowSizes.width < 768 && wrapper.classList.contains(OPEN_NAV_CLASS)) {
+            wrapper.classList.remove(OPEN_NAV_CLASS);
+            content.classList.remove(OPEN_NAV_CLASS);
+        }
+
+        if (windowSizes.height > 400) footerRef.current.classList.add(...FOOTER_CLASS)
+        else footerRef.current.classList.remove(...FOOTER_CLASS)
+
+    }, [windowSizes, wrapperRef, footerRef, contentRef])
+
     return (
-        <div className='relative min-h-screen md:flex'>
-            {/*Mobile Menu*/}
-            <div className='bg-blue-700 text-gray-100 flex justify-between md:hidden' data-testid='mobileMenu'>
-                {/*Logo*/}
-                <a href='/' data-testid='sidebarA' className='block p-4 text-white font-bold'>Aline</a>
-                {/*Hamburger button*/}
-                <button className='p-4 focus:outline-none focus:bg-gray-700' onClick={onClick} data-testid='mobileToggleB'>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-            </div>
+        <div className='d-flex flex-md-row flex-column  position-relative'>
+            {/*Mobile*/}
+            <nav className='d-flex navbar w-100 navbar-dark bg-dark d-md-none ' data-testid='mobileMenu'>
+                <div className='container-fluid'>
+                    <a href='/' className='navbar-brand'>Aline</a>
+                    <button className='navbar-toggler'
+                            onClick={handleToggle}
+                            data-testid='mobileToggle'
+                    >
+                        <span className='navbar-toggler-icon'/>
+                    </button>
+                </div>
+
+            </nav>
 
             {/*Sidebar*/}
-            <div className={`sidebar bg-blue-800 text-blue-100 w-64 space-y-6 px-2 py-7 px-2 absolute inset-y-0 left-0 transform
-            duration-200 ease-in-out md:translate-x-0 md:relative ${transition.transition}`}>
-                {/*Mobile close button*/}
-                <button className='md:hidden p-1 m-2 right-0 top-0 absolute' onClick={onClick} data-testid='mobileToggle'>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-
-                {/*logo*/}
-                <a href='/' className='text-white flex items-center space-x-2 px-4'>
-                    <svg className='w-8 h-8' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                         stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                              d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                    <span className='text-2xl font-bold'>Aline Financial</span>
+            <div
+                ref={wrapperRef}
+                className='d-flex min-vh-100 position-absolute flex-column p-3 text-white bg-dark px-2 sidebar is-nav-open'
+                id='SidebarContent'
+            >
+                <a href='/'
+                   className='align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none'>
+                    <span className='fs-4'>Aline Financial</span>
                 </a>
+                <hr/>
+                <div className='nav nav-pills flex-column overflow-auto'>
+                    <Navigation/>
+                </div>
 
-                <Navigation/>
+
+                <div ref={footerRef}
+                     className="dropdown ">
+                    <hr className='w-100'/>
+                    <a href="/"
+                       className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                       id="navProfileDropdown" data-bs-toggle="dropdown" aria-expanded="false" role='button'>
+
+                        <span>
+                            <svg xmlns='http://www.w3.org/2000/svg' height='16' width='16' fill='currentColor'
+                                 className='bi me-1'>
+                            <path
+                                d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+                            <path
+                                d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+                            </svg>
+                        </span>
+
+                        <strong>Settings</strong>
+                    </a>
+                    <ul className="dropdown-menu dropdown-menu-dark dropdown-menu-start text-small shadow"
+                        aria-labelledby="navProfileDropdown">
+                        <li><a className="dropdown-item" href="/">Profile</a></li>
+                        <li>
+                            <hr className="dropdown-divider"/>
+                        </li>
+                        <li><a className="dropdown-item" href="/">Sign out</a></li>
+                    </ul>
+                </div>
+
             </div>
-            {children}
+
+            <div ref={contentRef} className='flex-grow-1 content is-nav-open'>
+                {children}
+            </div>
+
+
         </div>
 
     );
 };
 
-Sidebar.propTypes = {
-    /** Children are the pages rendered*/
-    children: PropTypes.element,
-};
+Index.propTypes = {
+    children: PropTypes.element
+}
 
-export default Sidebar;
+export default Index;

@@ -8,20 +8,17 @@ import PropTypes from 'prop-types';
  */
 const TextInput = ({id, label, value, onChange, type})=> {
     return (
-        <div className='relative'>
+        <div className='form-floating'>
             <input type={!type? 'text': type}
                    name={id}
-                   className='peer h-10 w-full border-b-2 border-gray-300 placeholder-transparent
-                               focus:outline-none focus:border-blue-700'
+                   className='form-control rounded-1'
                    placeholder={label}
                    id={id}
                    value={value}
                    onChange={onChange}
                    data-testid={id}
             />
-            <label htmlFor={id} className='absolute left-0 -top-3.5 text-gray-600 text-sm
-                        transition-all peer-placeholder-shown:text-base peer-placeholder-show:text-gray-40
-                        peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm'>
+            <label htmlFor={id}>
                 {label}
             </label>
         </div>
