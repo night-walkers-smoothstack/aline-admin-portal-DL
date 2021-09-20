@@ -7,6 +7,9 @@
 
 # testing
 /coverage
+/.scannerwork
+test-report.xml
+eslint-report.json
 
 # production
 /build
