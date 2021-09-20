@@ -73,6 +73,7 @@ const AdminForm = () => {
     return (
         <div>
             <h1 className='display-5 mb-3 mt-5'>Create an Admin</h1>
+            <hr className = 'mb-5'/>
             <Form data={data} onSubmit={onSubmit} validationSchema={schema}/>
 
         </div>
