@@ -1,7 +1,9 @@
 import User from './UserAPI';
+import Bank from './BankAPI'
 
 const API = {
-    User
+    User,
+    Bank
 }
 
 export default API;

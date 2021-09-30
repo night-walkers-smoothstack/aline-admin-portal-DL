@@ -12,7 +12,7 @@ const actions = [
     {
         name: 'viewMembers',
         displayName: 'Members',
-        link: '/members',
+        link: '/member',
         icon: 'users',
         forwardState: false
     },
