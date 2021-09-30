@@ -12,10 +12,11 @@ import 'bootstrap/dist/js/bootstrap.bundle.min'
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {fab} from '@fortawesome/free-brands-svg-icons';
 import {faPlus, faChevronUp, faHome,
-    faUserPlus, faUsers, faUsersCog} from '@fortawesome/free-solid-svg-icons';
+    faUserPlus, faUsers, faUsersCog,
+    faEllipsisV} from '@fortawesome/free-solid-svg-icons';
 
 function App() {
-    library.add(fab, faPlus, faChevronUp, faHome, faUserPlus, faUsers, faUsersCog)
+    library.add(fab, faPlus, faChevronUp, faHome, faUserPlus, faUsers, faUsersCog, faEllipsisV)
     return (
         <div>
             <UserSessionProvider>

@@ -31,4 +31,4 @@ yarn-error.log*
 
 #SASS files
 /src/style.css
-/src/style.css.map
+/src/**/**.css.map
