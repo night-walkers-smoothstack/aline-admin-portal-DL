@@ -28,3 +28,7 @@ yarn-error.log*
 /.idea
 
 .env
+
+#SASS files
+/src/style.css
+/src/style.css.map
