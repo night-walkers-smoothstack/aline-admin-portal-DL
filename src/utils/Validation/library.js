@@ -141,6 +141,38 @@ const validations = {
     password: string()
         .label('Password')
         .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, 'Invalid password')
+        .required(),
+
+    searchId: number()
+        .label('Searchable Id')
+        .transform((value) => (isNaN(value) ? null : value))
+        .nullable(),
+
+    searchName: string()
+        .label('Searchable name')
+        .nullable(),
+
+    searchAmount: number()
+        .label('Search Amount')
+        .transform((value) => (isNaN(value) ? null : value))
+        .nullable(),
+
+    transactionType: string()
+        .required(),
+
+    transactionMethod: string()
+        .required(),
+
+    amount: number()
+        .required(),
+
+    merchantCode: string()
+        .required(),
+
+    merchantName: string()
+        .required(),
+
+    accountNumber: number()
         .required()
 }
 

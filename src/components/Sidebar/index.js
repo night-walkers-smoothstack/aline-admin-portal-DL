@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './sidebar.css';
 import Navigation from './Navigation';
 import UseWindowSize from '../../utils/useWindowSize';
+import QuickMenu from'../QuickMenu'
 
 /**
  * Sidebar navigation for application uses standard styling
@@ -42,7 +43,7 @@ const Index = ({children}) => {
     }, [windowSizes, wrapperRef, footerRef, contentRef])
 
     return (
-        <div className='d-flex flex-md-row flex-column  position-relative'>
+        <div className='d-flex flex-md-row flex-column position-relative min-vh-100'>
             {/*Mobile*/}
             <nav className='d-flex navbar w-100 navbar-dark bg-dark d-md-none ' data-testid='mobileMenu'>
                 <div className='container-fluid'>
@@ -60,7 +61,7 @@ const Index = ({children}) => {
             {/*Sidebar*/}
             <div
                 ref={wrapperRef}
-                className='d-flex min-vh-100 position-absolute flex-column p-3 text-white bg-dark px-2 sidebar is-nav-open'
+                className='d-flex min-vh-100 position-absolute position-fixed flex-column p-3 text-white bg-dark px-2 sidebar is-nav-open'
                 id='SidebarContent'
             >
                 <a href='/'
@@ -108,7 +109,7 @@ const Index = ({children}) => {
                 {children}
             </div>
 
-
+            <QuickMenu/>
         </div>
 
     );

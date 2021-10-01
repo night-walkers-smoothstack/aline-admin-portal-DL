@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useFormContext} from 'react-hook-form';
 
-const FormTextInput = ({data}) => {
+const FormIncomeInput = ({data}) => {
     const {register, formState: {errors}} = useFormContext();
 
     const {
-        id, label, type,
+        id, label
     } = data;
 
     return (
@@ -15,10 +15,11 @@ const FormTextInput = ({data}) => {
                 <input
                     id={id}
                     name={id}
-                    type={type}
+                    type='number'
                     className='form-control rounded-1'
                     {...register(id)}
                     placeholder={label}
+                    min={1}
                 />
                 <label htmlFor={id}>{label}</label>
             </div>
@@ -28,9 +29,9 @@ const FormTextInput = ({data}) => {
     );
 };
 
-FormTextInput.propTypes = {
+FormIncomeInput.propTypes = {
     question: PropTypes.object,
     error: PropTypes.object
 };
 
-export default FormTextInput;
+export default FormIncomeInput;
