@@ -156,6 +156,24 @@ const validations = {
         .label('Search Amount')
         .transform((value) => (isNaN(value) ? null : value))
         .nullable(),
+
+    transactionType: string()
+        .required(),
+
+    transactionMethod: string()
+        .required(),
+
+    amount: number()
+        .required(),
+
+    merchantCode: string()
+        .required(),
+
+    merchantName: string()
+        .required(),
+
+    accountNumber: number()
+        .required()
 }
 
 export default validations;

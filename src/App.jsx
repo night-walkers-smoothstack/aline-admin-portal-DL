@@ -6,6 +6,8 @@ import NotFound from './pages/NotFound';
 import UserForm from './pages/UserForm'
 import ApplicantForm from './pages/ApplicantForm';
 import Users from './pages/Users'
+import Transactions from './pages/Transactions'
+import TransactionForm from './pages/TransactionForm'
 import Members from './pages/Members'
 import UserSessionProvider from './utils/UserContext';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -29,6 +31,8 @@ function App() {
                         <ProtectedRoute path='/user' component={Users}/>
                         <ProtectedRoute path='/member/create' component={ApplicantForm}/>
                         <ProtectedRoute path='/member' component={Members}/>
+                        <ProtectedRoute path='/transaction/create' component={TransactionForm}/>
+                        <ProtectedRoute path='/transaction' component={Transactions}/>
                         <Route path='*' component={NotFound}/>
                     </Switch>
 

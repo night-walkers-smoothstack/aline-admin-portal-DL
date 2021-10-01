@@ -11,14 +11,13 @@ import FormSocialSecurityInput from './FormSocialSecurityInput';
 import FormAddressInput from './FormAddressInput';
 import FormIncomeInput from './FormIncomeInput';
 
-const Index = ({data, onSubmit, validationSchema, children, defaultValues={}}) => {
+const Index = ({data, onSubmit, validationSchema, children}) => {
     const [formBody, setFormBody] = useState();
     const methods = useForm({
         resolver: yupResolver(validationSchema),
         criteriaMode: 'all',
         mode: 'all',
         reValidateMode: 'onChange',
-        defaultValues: defaultValues
     })
 
     useEffect(() => {
@@ -67,7 +66,6 @@ Index.propTypes = {
     data: PropTypes.array.isRequired,
     onSubmit: PropTypes.func.isRequired,
     validationSchema: PropTypes.any.isRequired,
-    defaultValues: PropTypes.object.isRequired
 };
 
 export default Index;

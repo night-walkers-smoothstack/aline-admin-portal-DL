@@ -26,9 +26,6 @@ const Index = () => {
                 ...mailing
             }]
         }
-
-        console.log(applicationRequest)
-
         try {
             const res = await API.Application.newApplicant(applicationRequest)
             console.log(res)
