@@ -44,7 +44,7 @@ const Index = ({data}) => {
     }
 
     return (
-        <div className='action-card text-center col text-center '>
+        <div className='col-12 col-md-2 action-card text-center text-center  '>
             {
                 redirectStatus.isRedirect ?
                     <Redirect push to={redirectStatus.to}/> :

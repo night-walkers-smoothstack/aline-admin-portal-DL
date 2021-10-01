@@ -37,7 +37,7 @@ const RecentMenu = () => {
                 </button>
             </div>
             <div className='collapse show pt-2 mb-3' id='recentActionsMenu'>
-                <div className='d-flex justify-content-between w-75 mx-auto action-container'>
+                <div className='row gap-4 gap-md-0 justify-content-between  action-container'>
                     {actionItems.map((action, index) => {
                         return <QuickActionsBtn data={action} key={index}/>
                     })}

@@ -29,6 +29,13 @@ const actions = [
         link: '/member/create',
         icon: 'user-plus',
         forwardState: false
+    },
+    {
+        name: 'Transaction',
+        displayName: 'Post Transaction',
+        link: '/transaction/create',
+        icon: 'plus',
+        forwardState: false
     }
 ]
 export default actions;
