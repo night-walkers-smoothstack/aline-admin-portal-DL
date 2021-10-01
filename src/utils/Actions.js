@@ -23,5 +23,12 @@ const actions = [
         icon: 'users-cog',
         forwardState: false
     },
+    {
+        name: 'Create Applicant',
+        displayName: 'New Applicant',
+        link: '/member/create',
+        icon: 'user-plus',
+        forwardState: false
+    }
 ]
 export default actions;

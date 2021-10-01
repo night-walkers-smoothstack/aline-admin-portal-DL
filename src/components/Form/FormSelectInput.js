@@ -8,8 +8,7 @@ const FormSelectInput = ({data}) => {
         id, label, options
     } = data
     return (
-        <div>
-            <label htmlFor={id}>{label}</label>
+        <div className='form-floating'>
             <select className='form-select' aria-label={id} {...register(id)}>
                 {
                     options.map((opt, index) =>(
@@ -17,6 +16,8 @@ const FormSelectInput = ({data}) => {
                     ))
                 }
             </select>
+            <label htmlFor={id}>{label}</label>
+
             <p className='text-danger small mt-1 text-start'>{errors[id]?.message}</p>
         </div>
     );

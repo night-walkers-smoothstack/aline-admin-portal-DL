@@ -1,10 +1,40 @@
-import React, {useMemo, useRef} from 'react';
+import React, {useMemo, useRef, useState} from 'react';
 import Table from '../../components/Table'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import SearchForm from './SearchForm';
 import API from '../../utils/API';
+import {Link} from 'react-router-dom';
 
 const Index = () => {
+    const fakeData = [
+    {
+        id: 1,
+        applicant: {
+            firstName: 'bet',
+            lastName: 'alpha'
+        },
+        branch: {
+            id: 1,
+            nickname: 'Main St',
+        },
+        membershipId: 52132,
+
+    },
+    {
+        id: 1,
+        applicant: {
+            firstName: 'bet',
+            lastName: 'alpha'
+        },
+        branch: {
+            id: 1,
+            nickname: 'Main St',
+        },
+        membershipId: 52132,
+
+    }
+]
+    const [data, setData] = useState(fakeData)
     const dropdownRef = useRef();
 
     const onDowntownRotate = () => {
@@ -13,7 +43,9 @@ const Index = () => {
 
     const onSubmit =async (data)=>{
         console.log('Submit Data: ', data)
-        await API.Bank.searchMembers(data);
+        const res = await API.Bank.searchMembers(data);
+        const myData = res.data?.content
+        if(myData) setData([])
     }
 
     const columns = useMemo(()=>[
@@ -36,34 +68,7 @@ const Index = () => {
 
     ], [])
 
-    const fakeData = [
-        {
-            id: 1,
-            applicant: {
-                firstName: 'bet',
-                lastName: 'alpha'
-            },
-            branch: {
-                id: 1,
-                nickname: 'Main St',
-            },
-            membershipId: 52132,
 
-        },
-        {
-            id: 1,
-            applicant: {
-                firstName: 'bet',
-                lastName: 'alpha'
-            },
-            branch: {
-                id: 1,
-                nickname: 'Main St',
-            },
-            membershipId: 52132,
-
-        }
-    ]
 
 
     return (
@@ -92,8 +97,14 @@ const Index = () => {
                 </div>
             </div>
 
-            <div>Development table</div>
-            <Table data={fakeData} columns={columns} />
+            <Link className='btn btn-primary rounded-circle'
+                to={{
+                    pathname: '/member/create'
+                }}
+            >
+                <FontAwesomeIcon icon='plus'/>
+            </Link>
+            <Table data={data} columns={columns} />
         </div>
     );
 };

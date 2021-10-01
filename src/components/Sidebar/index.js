@@ -61,7 +61,7 @@ const Index = ({children}) => {
             {/*Sidebar*/}
             <div
                 ref={wrapperRef}
-                className='d-flex min-vh-100 position-absolute flex-column p-3 text-white bg-dark px-2 sidebar is-nav-open'
+                className='d-flex min-vh-100 position-absolute position-fixed flex-column p-3 text-white bg-dark px-2 sidebar is-nav-open'
                 id='SidebarContent'
             >
                 <a href='/'
