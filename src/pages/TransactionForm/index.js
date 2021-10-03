@@ -56,9 +56,14 @@ const Index = () => {
         },
         {
             id: 'accountNumber',
-            type: 'number',
+            type: 'text',
             label: 'Account number'
         },
+        {
+            id:'description',
+            type: 'text',
+            label: 'Transaction Description'
+        }
 
     ]
 

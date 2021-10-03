@@ -172,8 +172,11 @@ const validations = {
     merchantName: string()
         .required(),
 
-    accountNumber: number()
-        .required()
+    accountNumber: string()
+        .required(),
+    transactionDescription: string()
+        .nullable()
+
 }
 
 export default validations;

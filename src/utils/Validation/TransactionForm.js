@@ -7,7 +7,8 @@ const {
     amount,
     merchantCode,
     merchantName,
-    accountNumber
+    accountNumber,
+    transactionDescription
 }= baseSchema
 
 const schema = yup.object().shape({
@@ -16,7 +17,8 @@ const schema = yup.object().shape({
     amount,
     merchantCode,
     merchantName,
-    accountNumber
+    accountNumber,
+    description: transactionDescription
 })
 
 export default schema;
