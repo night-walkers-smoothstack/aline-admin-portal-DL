@@ -14,6 +14,8 @@ pipeline {
         ORGANIZATION = 'Aline-Financial'
         PROJECT_NAME = 'aline-admin-portal'
         APP_DOMAIN = 'alinefinancial.com'
+        REACT_APP_API_BASEURL ='https://api.alinefinancial.com'
+        REACT_APP_TOKEN_NAME = 'jwtToken'
     }
 
     stages {
