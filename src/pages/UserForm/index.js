@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useLocation} from 'react-router-dom';
 import AdminForm from './AdminForm';
-import {Helmet} from "react-helmet";
+import {Helmet} from 'react-helmet';
 
 const Index = () => {
     const [formType, setFormType] = useState()

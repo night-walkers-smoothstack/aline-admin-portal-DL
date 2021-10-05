@@ -4,7 +4,7 @@ import schema from '../../utils/Validation/ApplicantForm'
 import API from '../../utils/API';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import {Helmet} from "react-helmet";
+import {Helmet} from 'react-helmet';
 
 const Index = () => {
     const MySwal = withReactContent(Swal);

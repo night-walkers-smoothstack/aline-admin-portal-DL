@@ -3,7 +3,7 @@ import API from '../../utils/API';
 import {Redirect} from 'react-router-dom';
 import TextInput from '../../components/TextInput';
 import './login.css'
-import {Helmet} from "react-helmet";
+import {Helmet} from 'react-helmet';
 
 const Index = () => {
     const [userDetails, setUserDetails] = useState({username: '', password: ''})
