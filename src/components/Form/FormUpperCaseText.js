@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useFormContext} from 'react-hook-form';
 
-const FormTextInput = ({data}) => {
+const FormUpperCaseText = ({data}) => {
     const {register, formState: {errors}} = useFormContext();
 
     const {
@@ -11,12 +11,13 @@ const FormTextInput = ({data}) => {
 
     return (
         <div>
-            <div className='form-floating mt-2 mb-0'>
+            <div className='form-floating mt-2 mb-0'
+            >
                 <input
                     id={id}
                     name={id}
                     type={type}
-                    className='form-control rounded-1 bg-white'
+                    className='form-control rounded-1 text-uppercase'
                     {...register(id)}
                     placeholder={label}
                 />
@@ -28,9 +29,9 @@ const FormTextInput = ({data}) => {
     );
 };
 
-FormTextInput.propTypes = {
+FormUpperCaseText.propTypes = {
     question: PropTypes.object,
     error: PropTypes.object
 };
 
-export default FormTextInput;
+export default FormUpperCaseText;

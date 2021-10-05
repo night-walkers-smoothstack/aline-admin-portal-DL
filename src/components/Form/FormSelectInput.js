@@ -9,7 +9,7 @@ const FormSelectInput = ({data}) => {
     } = data
     return (
         <div className='form-floating'>
-            <select className='form-select' aria-label={id} defaultValue={options[0].value} {...register(id)}>
+            <select className='form-select bg-white' aria-label={id} defaultValue={options[0].value} {...register(id)}>
                 {
                     options.map((opt, index) =>(
                         <option key={index} value={opt.value}>{opt.name}</option>

@@ -130,7 +130,7 @@ const FormAddressInput = () => {
             </div>
 
             <div className='row'>
-                <div className='mt-2 mb-0 '>
+                <div className='mt-2 mb-3 '>
                     <input
                         className='me-1 btn-check'
                         id='isSameAsMailing'
@@ -186,7 +186,7 @@ const FormAddressInput = () => {
                     </div>
                     <div className='col-md'>
                         <div className='form-floating'>
-                            <select className='form-select '
+                            <select className='form-select'
                                     aria-label='mailingState'
                                     name='mailingState'
                                     id='mailingState'

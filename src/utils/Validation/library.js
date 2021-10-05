@@ -22,8 +22,8 @@ const validations = {
     middleName: string()
         .label('Middle Name')
         .matches(/^[aA-zZ\s-]+$/, (err) => `'${err.value}' is not a valid middle name.`)
-        .nullable()
-        .notRequired(),
+        .nullable(true)
+        .transform(v=>(v===''? null: v)),
 
     lastName: string()
         .label('Last Name')
@@ -126,7 +126,9 @@ const validations = {
 
     income: number()
         .label('Income')
+        .typeError('Income must be number')
         .positive('Cannot have negative income.')
+        .min(.01, 'Income must be greater than $0.01')
         .required('Income is required.'),
 
     initialDeposit: number()
@@ -146,36 +148,49 @@ const validations = {
     searchId: number()
         .label('Searchable Id')
         .transform((value) => (isNaN(value) ? null : value))
-        .nullable(),
+        .nullable(true),
 
     searchName: string()
         .label('Searchable name')
-        .nullable(),
+        .nullable(true)
+        .transform(v=>(v===''? null: v)),
 
     searchAmount: number()
         .label('Search Amount')
+        .typeError('Search amount must be a number')
         .transform((value) => (isNaN(value) ? null : value))
         .nullable(),
 
     transactionType: string()
+        .label('Transaction Type')
         .required(),
 
     transactionMethod: string()
+        .label('Transaction Method')
         .required(),
 
     amount: number()
+        .label('Amount')
+        .typeError('Amount must be a number')
         .required(),
 
     merchantCode: string()
+        .label('Merchant Code')
+        .min(4, 'Merchant Code must be at least 4 characters in length')
+        .max(8, 'Merchant Code cannot be greater than 8 characters in length')
         .required(),
 
     merchantName: string()
+        .label('Merchant Name')
         .required(),
 
     accountNumber: string()
+        .label('Account Number')
         .required(),
+
     transactionDescription: string()
-        .nullable()
+        .label('Transaction Description')
+        .nullable(true)
 
 }
 

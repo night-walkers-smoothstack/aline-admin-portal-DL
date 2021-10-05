@@ -44,7 +44,6 @@ const RecentMenu = () => {
 
                 </div>
             </div>
-            <hr className='bg-dark'/>
 
         </div>
     );
