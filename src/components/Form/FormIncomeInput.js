@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {useFormContext} from 'react-hook-form';
 
 const FormIncomeInput = ({data}) => {
-    const {register, formState: {errors}} = useFormContext();
+    const {register} = useFormContext();
     const [incomeVal, setIncomeVal] = useState(0);
 
     const {
