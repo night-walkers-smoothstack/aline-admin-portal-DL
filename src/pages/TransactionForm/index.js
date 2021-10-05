@@ -2,6 +2,7 @@ import React from 'react';
 import Form from '../../components/Form'
 import schema from '../../utils/Validation/TransactionForm'
 import API from '../../utils/API';
+import {Helmet} from 'react-helmet';
 
 
 const Index = () => {
@@ -46,8 +47,8 @@ const Index = () => {
         },
         {
             id: 'merchantCode',
-            type: 'text',
-            label: 'Merchant Code'
+            type: 'UppercaseText',
+            label: 'Merchant Code',
         },
         {
             id: 'merchantName',
@@ -69,6 +70,13 @@ const Index = () => {
 
     return (
         <div className='w-75 mx-auto'>
+            <Helmet>
+                <title>Post Transaction</title>
+                <meta
+                    name='description'
+                    content='Post Transaction for Aline Financial'
+                />
+            </Helmet>
             <h1 className='display-5 mb-3 mt-5'>Post Transaction</h1>
             <hr className='mb-5'/>
             <Form data={formData} onSubmit={onSubmit} validationSchema={schema}/>

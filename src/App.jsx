@@ -14,9 +14,16 @@ import ProtectedRoute from './components/ProtectedRoute';
 import 'bootstrap/dist/js/bootstrap.bundle.min'
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {fab} from '@fortawesome/free-brands-svg-icons';
-import {faPlus, faChevronUp, faHome,
-    faUserPlus, faUsers, faUsersCog,
-    faEllipsisV} from '@fortawesome/free-solid-svg-icons';
+import {
+    faChevronUp,
+    faEllipsisV,
+    faHome,
+    faPlus,
+    faUserPlus,
+    faUsers,
+    faUsersCog
+} from '@fortawesome/free-solid-svg-icons';
+import {Helmet} from 'react-helmet';
 
 function App() {
     library.add(fab, faPlus, faChevronUp, faHome, faUserPlus, faUsers, faUsersCog, faEllipsisV)
@@ -24,6 +31,14 @@ function App() {
         <div>
             <UserSessionProvider>
                 <Router>
+
+                    <Helmet>
+                        <title>Admin | Aline Financial</title>
+                        <meta
+                            name='description'
+                            content='Administrative Dashboard for Aline Financial'
+                        />
+                    </Helmet>
                     <Switch>
                         <Route exact path='/login' component={Login}/>
                         <ProtectedRoute exact path='/' component={Home}/>
@@ -37,6 +52,7 @@ function App() {
                     </Switch>
 
                 </Router>
+
             </UserSessionProvider>
 
         </div>

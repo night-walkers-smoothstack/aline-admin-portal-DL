@@ -1,86 +1,63 @@
-import React, {useMemo, useRef, useState} from 'react';
-import Table from '../../components/Table'
+import React, {useRef, useState} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import SearchForm from './SearchForm';
 import API from '../../utils/API';
 import {Link} from 'react-router-dom';
+import {Helmet} from 'react-helmet';
+import {useMutation, useQuery, useQueryClient} from 'react-query';
+import Pagination from '../../components/Table/Pagination';
+import MembersTable from './MembersTable';
 
-const Index = () => {
-    const fakeData = [
-    {
-        id: 1,
-        applicant: {
-            firstName: 'bet',
-            lastName: 'alpha'
-        },
-        branch: {
-            id: 1,
-            nickname: 'Main St',
-        },
-        membershipId: 52132,
+const Index = options => {
+    const queryClient = useQueryClient();
 
-    },
-    {
-        id: 1,
-        applicant: {
-            firstName: 'bet',
-            lastName: 'alpha'
-        },
-        branch: {
-            id: 1,
-            nickname: 'Main St',
-        },
-        membershipId: 52132,
+    const [pages, setPages] = useState({page: 0})
+    const {mutate} = useMutation(API.Bank.searchMembers, {
+        onSuccess: () => {
+            queryClient.invalidateQueries(['members', pages.page])
+        }
+    })
 
+    const fetchMembers = async () => {
+
+        const {data} = await API.Bank.searchMembers({...pages})
+        return data;
     }
-]
-    const [data, setData] = useState(fakeData)
+
+    const {data, error, isError, isLoading} = useQuery(
+        ['members', pages.page],
+        fetchMembers,
+        {keepPreviousData: true, staleTime: 5000})
+
     const dropdownRef = useRef();
 
     const onDowntownRotate = () => {
         dropdownRef.current.classList.toggle('rotate-180')
     }
 
-    const onSubmit =async (data)=>{
+    const onSubmit = async (data) => {
         console.log('Submit Data: ', data)
-        const res = await API.Bank.searchMembers(data);
-        const myData = res.data?.content
-        if(myData) setData([])
+
+        mutate(data)
+
     }
-
-    const columns = useMemo(()=>[
-        {
-            Header: 'id',
-            accessor: 'id'
-        },
-        {
-            Header: 'Applicant',
-            accessor: 'applicant.firstName'
-        },
-        {
-            Header: 'branch',
-            accessor: 'branch.id'
-        },
-        {
-            Header: 'Member ID',
-            accessor: 'membershipId'
-        },
-
-    ], [])
-
-
 
 
     return (
         <div className='w-75 mx-auto my-2 py-3'>
+            <Helmet>
+                <title>Members Management</title>
+                <meta
+                    name='description'
+                    content='Members management for Aline Financial'
+                />
+            </Helmet>
             <h1 className='display-5'>Members Management</h1>
 
-            <div className='mb-5'>
-                <div className='d-flex justify-content-between'>
-                    <div>
-                        <h2 className='fs-4 fw-normal'>Search</h2>
-                    </div>
-                    <button type='button' className='btn btn-primary rounded-circle rotate'
+            <div className='mb-5 mt-3'>
+                <div className='d-flex'>
+
+                    <button type='button' className='btn btn-primary rounded-circle rotate me-2'
                             data-bs-toggle='collapse'
                             data-bs-target='#searchArea'
                             aria-expanded='false'
@@ -90,6 +67,9 @@ const Index = () => {
                     >
                         <FontAwesomeIcon icon='chevron-up' rotation={180}/>
                     </button>
+                    <div>
+                        <h2 className='fs-4 fw-normal me-3'>Search</h2>
+                    </div>
                 </div>
 
                 <div className='collapse pt-2' id='searchArea'>
@@ -97,14 +77,27 @@ const Index = () => {
                 </div>
             </div>
 
-            <Link className='btn btn-primary rounded-circle'
-                to={{
-                    pathname: '/member/create'
-                }}
-            >
-                <FontAwesomeIcon icon='plus'/>
-            </Link>
-            <Table data={data} columns={columns} />
+            <div className='text-start'>
+                <Link className='btn btn-primary mb-3 '
+                      to={{
+                          pathname: '/member/create'
+                      }}
+                >
+                    Add Member<FontAwesomeIcon icon='plus'/>
+                </Link>
+            </div>
+
+            <div>
+                {
+                    isLoading || isError ?
+                        <div>table is loading . . .{isError ? <span>error: {error.message}</span> : ''}</div> : (
+                            <div>
+                                <MembersTable data={data.content}/>
+                                <Pagination data={data} setPagination={setPages}/>
+                            </div>
+                        )
+                }
+            </div>
         </div>
     );
 };

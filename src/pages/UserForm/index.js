@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useLocation} from 'react-router-dom';
 import AdminForm from './AdminForm';
+import {Helmet} from "react-helmet";
 
 const Index = () => {
     const [formType, setFormType] = useState()
@@ -28,6 +29,13 @@ const Index = () => {
 
     return (
         <div className='w-75 mx-auto'>
+            <Helmet>
+                <title>Add User</title>
+                <meta
+                    name='description'
+                    content='Create user'
+                />
+            </Helmet>
             {formType}
         </div>
     );
