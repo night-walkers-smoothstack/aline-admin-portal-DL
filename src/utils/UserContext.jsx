@@ -32,8 +32,8 @@ const userTokenInitialState = {
 
 /** Custom Hook to retrieve user details */
 export function UseUserSession() {
-    const {authorities, logoutMethod, loggedIn, token, expired, user} = useContext(UserSessionContext);
-    return {authorities, logoutMethod, loggedIn, token, expired, user}
+    const {authority, logoutMethod, loggedIn, token, expired, user} = useContext(UserSessionContext);
+    return {authority, logoutMethod, loggedIn, token, expired, user}
 }
 
 /** Custom Hook to access function that updates the user context from stored token */
@@ -60,8 +60,10 @@ export default function UserSessionProvider({children}) {
             let fullToken = localStorage.getItem(STORAGE_NAME);
             try {
                 const decodedJWT = jwt_decode(fullToken.replace('Bearer ', ''));
+                console.log('Decoded JWT: ', decodedJWT.authority)
                 let isExpired = (Date.now() >= decodedJWT.exp * 1000);
-                let isLoggedIn = !isExpired && fullToken.includes('Bearer ');
+                let isLoggedIn = !isExpired && fullToken.includes('Bearer ') && decodedJWT.authority==='administrator';
+                console.log('isLoggedIn: ', isLoggedIn)
 
                 setToken({
                     jwt: fullToken,
@@ -70,6 +72,7 @@ export default function UserSessionProvider({children}) {
                     loggedIn: isLoggedIn,
                     user: decodedJWT.sub
                 })
+                console.log('token is: ', token)
             } catch (e) {
                 setToken({...userTokenInitialState, checkedStorage: true});
             }

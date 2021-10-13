@@ -10,30 +10,29 @@ import {UpdateUserSession, UseUserSession} from '../../utils/UserContext';
  * @returns {JSX.Element}
  */
 const ProtectedRoute = ({component: Component, ...rest}) => {
-    const {loggedIn} = UseUserSession();
+    const {loggedIn, authority} = UseUserSession();
     const [loading, setLoading] = useState(true);
     const {updateUser} = UpdateUserSession();
 
     useEffect(() => {
         if (!loggedIn && process.env.REACT_APP_TOKEN_NAME in localStorage) updateUser();
-
+        console.log(authority)
         setLoading(false)
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [authority])
 
     return (
         <div className='w-100'>
-            {loading ? (
+            {loading? (
                 <div>I'm Loading</div>
             ) : (
                 <Sidebar>
                 <Route
                     {...rest}
                     render={(props) =>
-                        !loggedIn ?
-
-                            (<Redirect to='/login'/>) :
-                            (<Component {...props} />)
+                        loggedIn?
+                            (<Component {...props} />):
+                            (<Redirect to='/login'/>)
                     }
                 />
                 </Sidebar>
