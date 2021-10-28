@@ -1,8 +1,11 @@
 import React, {createRef, useState} from 'react';
 import {UseStompContext} from '../../utils/StompContext';
+import {UseUserSession} from '../../utils/UserContext';
 
-const ChatArea = props => {
-    const [username, setUsername] = useState({name: ''})
+const ChatArea = ({changeStatus}) => {
+    const {user} = UseUserSession();
+
+    const [username, setUsername] = useState({name: user})
     const [message, setMessage] = useState({msg: ''})
     const [msgList, setMsgList] = useState({list: []})
     const {client, connect} = UseStompContext()
@@ -29,6 +32,8 @@ const ChatArea = props => {
     const myConnect = (e) => {
         e.preventDefault();
         console.log('logging on')
+        console.log('user', user)
+        changeStatus()
         if (username) {
             userPage.current.classList.add('d-none');
             chatPage.current.classList.remove('d-none')
