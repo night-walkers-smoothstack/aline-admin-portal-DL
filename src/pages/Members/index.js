@@ -21,6 +21,7 @@ const Index = options => {
     const fetchMembers = async () => {
 
         const {data} = await API.Bank.searchMembers({...pages})
+        console.log('data from fetchMembers: ', data)
         return data;
     }
 

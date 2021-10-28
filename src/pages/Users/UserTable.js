@@ -22,8 +22,6 @@ const UserTable = ({data}) => {
 
             const userData = await API.User.getUserById(userId);
 
-            console.log('User Data is: ', userData.data)
-
             setModalDetails({...modalDetails, userData: userData.data, loading: false})
 
         }

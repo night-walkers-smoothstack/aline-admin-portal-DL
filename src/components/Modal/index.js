@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-const Index = ({modalId, title, children, footer}) => {
+const Index = ({modalId, title, children, CustomFooter}) => {
     const DefaultFooter = () => {
         return <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
     }
@@ -20,7 +20,7 @@ const Index = ({modalId, title, children, footer}) => {
                         {children}
                     </div>
                     <div className="modal-footer">
-                        {footer? footer : <DefaultFooter/>}
+                        {CustomFooter? <CustomFooter/> : <DefaultFooter/>}
                     </div>
                 </div>
             </div>
