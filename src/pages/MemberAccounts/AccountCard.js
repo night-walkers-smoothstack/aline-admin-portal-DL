@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
+import TransactionstTable from './TransactionsTable';
 
 const AccountCard = ({account, error}) => {
 
@@ -22,6 +23,8 @@ const AccountCard = ({account, error}) => {
                                     <div>Available Balance: {account.availableBalance}</div> :
                                     <div>APY: {account.apy}</div>
                             }
+                            <br/>
+                            <TransactionstTable accountId={account.id}/>
                         </div>
                     )
             }

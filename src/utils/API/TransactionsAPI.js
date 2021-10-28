@@ -7,6 +7,13 @@ const TransactionsAPI = {
         }catch (e){
             console.error(e.message)
         }
+    },
+    getTransactionByAccountId: async function(accountId, pages){
+        try{
+            return await axios.get(`/api/accounts/${accountId}/transactions`, {params: {pages}});
+        }catch (e){
+            console.error(e.message)
+        }
     }
 
 }
