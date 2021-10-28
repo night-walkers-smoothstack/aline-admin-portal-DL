@@ -10,6 +10,7 @@ import Transactions from './pages/Transactions'
 import TransactionForm from './pages/TransactionForm'
 import MemberAccounts from './pages/MemberAccounts'
 import Members from './pages/Members'
+import Chat from './pages/Chat'
 import UserSessionProvider from './utils/UserContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import 'bootstrap/dist/js/bootstrap.bundle.min'
@@ -56,6 +57,7 @@ function App() {
                         <ProtectedRoute path='/member' component={Members}/>
                         <ProtectedRoute path='/transaction/create' component={TransactionForm}/>
                         <ProtectedRoute path='/transaction' component={Transactions}/>
+                        <ProtectedRoute path='/chat' component={Chat}/>
                         <Route path='*' component={NotFound}/>
                     </Switch>
 

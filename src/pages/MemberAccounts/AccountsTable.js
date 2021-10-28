@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Table from '../../components/Table'
 import AccountMask from './AccountMask';
 import API from '../../utils/API';
-import AccountCard from "./AccountCard";
+import AccountCard from './AccountCard';
 
 const AccountsTable = ({data}) => {
     const [accountDetails, setAccountDetails] = useState({
@@ -63,7 +63,7 @@ const AccountsTable = ({data}) => {
                 }
             }
         ]
-    }, [])
+    }, [accountDetails])
 
     return (
         <div>
