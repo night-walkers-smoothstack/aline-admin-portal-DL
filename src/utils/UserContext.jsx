@@ -60,10 +60,9 @@ export default function UserSessionProvider({children}) {
             let fullToken = localStorage.getItem(STORAGE_NAME);
             try {
                 const decodedJWT = jwt_decode(fullToken.replace('Bearer ', ''));
-                console.log('Decoded JWT: ', decodedJWT.authority)
                 let isExpired = (Date.now() >= decodedJWT.exp * 1000);
+                if(isExpired) localStorage.removeItem(STORAGE_NAME)
                 let isLoggedIn = !isExpired && fullToken.includes('Bearer ') && decodedJWT.authority==='administrator';
-                console.log('isLoggedIn: ', isLoggedIn)
 
                 setToken({
                     jwt: fullToken,
@@ -72,7 +71,6 @@ export default function UserSessionProvider({children}) {
                     loggedIn: isLoggedIn,
                     user: decodedJWT.sub
                 })
-                console.log('token is: ', token)
             } catch (e) {
                 setToken({...userTokenInitialState, checkedStorage: true});
             }

@@ -6,10 +6,6 @@ const MembersTable = ({data}) => {
 
     const columns = useMemo(()=>[
         {
-            Header: 'id',
-            accessor: 'id'
-        },
-        {
             Header: 'Membership Id',
             accessor: 'membershipId'
         },

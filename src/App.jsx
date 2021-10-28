@@ -21,12 +21,14 @@ import {
     faPlus,
     faUserPlus,
     faUsers,
-    faUsersCog
+    faUsersCog,
+    faPen,
+    faSpinner
 } from '@fortawesome/free-solid-svg-icons';
 import {Helmet} from 'react-helmet';
 
 function App() {
-    library.add(fab, faPlus, faChevronUp, faHome, faUserPlus, faUsers, faUsersCog, faEllipsisV)
+    library.add(fab, faPlus, faChevronUp, faHome, faUserPlus, faUsers, faUsersCog, faEllipsisV, faPen, faSpinner)
     return (
         <div>
             <UserSessionProvider>

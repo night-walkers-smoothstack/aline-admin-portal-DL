@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 
 const Pagination = ({data, setPagination}) => {
-    console.log('Pagination Data: ', data)
+    // console.log('Pagination Data: ', data)
     const [tablePagination, setTablePagination] = useState({
         isFirst: false,
         isLast: false,
