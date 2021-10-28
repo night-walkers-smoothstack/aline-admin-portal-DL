@@ -21,7 +21,6 @@ const Index = options => {
     const fetchMembers = async () => {
 
         const {data} = await API.Bank.searchMembers({...pages})
-        console.log('data from fetchMembers: ', data)
         return data;
     }
 
@@ -37,10 +36,7 @@ const Index = options => {
     }
 
     const onSubmit = async (data) => {
-        console.log('Submit Data: ', data)
-
         mutate(data)
-
     }
 
 

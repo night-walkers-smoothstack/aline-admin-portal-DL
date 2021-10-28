@@ -12,7 +12,6 @@ const AccountMask = ({number}) => {
 
     const changeView = (e) =>{
         e.preventDefault()
-        console.log('change view')
         setView({mask: !view.mask})
     }
 
