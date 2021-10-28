@@ -8,6 +8,7 @@ import ApplicantForm from './pages/ApplicantForm';
 import Users from './pages/Users'
 import Transactions from './pages/Transactions'
 import TransactionForm from './pages/TransactionForm'
+import MemberAccounts from './pages/MemberAccounts'
 import Members from './pages/Members'
 import UserSessionProvider from './utils/UserContext';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -23,12 +24,16 @@ import {
     faUsers,
     faUsersCog,
     faPen,
-    faSpinner
+    faSpinner,
+    faEye,
+    faEyeSlash
 } from '@fortawesome/free-solid-svg-icons';
 import {Helmet} from 'react-helmet';
 
 function App() {
-    library.add(fab, faPlus, faChevronUp, faHome, faUserPlus, faUsers, faUsersCog, faEllipsisV, faPen, faSpinner)
+    library.add(fab, faPlus, faChevronUp, faHome, faUserPlus,
+        faUsers, faUsersCog, faEllipsisV, faPen, faSpinner,
+        faEye,faEyeSlash)
     return (
         <div>
             <UserSessionProvider>
@@ -46,6 +51,7 @@ function App() {
                         <ProtectedRoute exact path='/' component={Home}/>
                         <ProtectedRoute path='/user/create' component={UserForm}/>
                         <ProtectedRoute path='/user' component={Users}/>
+                        <ProtectedRoute path='/member/accounts' component={MemberAccounts}/>
                         <ProtectedRoute path='/member/create' component={ApplicantForm}/>
                         <ProtectedRoute path='/member' component={Members}/>
                         <ProtectedRoute path='/transaction/create' component={TransactionForm}/>

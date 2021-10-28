@@ -4,6 +4,7 @@ import Table from '../../components/Table'
 import Modal from '../../components/Modal'
 import API from '../../utils/API';
 import MemberEditForm from './MemberEditForm';
+import {Redirect} from 'react-router-dom';
 
 const MembersTable = ({data}) => {
     const [modalDetails, setModalDetails] = useState({
@@ -12,15 +13,31 @@ const MembersTable = ({data}) => {
         memberId: null,
     })
 
+    const [redirectDetails, setRedirectDetails] = useState({
+        isRedirect: false,
+        pathname: '/member/accounts',
+        memberId: null,
+    })
+
+
     const columns = useMemo(() => {
 
         const onEdit = async (e) => {
             e.preventDefault()
-            setModalDetails({...modalDetails, loading:true})
-            const membership= e.target.getAttribute('data-membership');
+            setModalDetails({...modalDetails, loading: true})
+            const membership = e.target.getAttribute('data-membership');
             const {data} = await API.Bank.getMemberByMembershipId(membership)
-            console.log('Memberdata form onEdit: ', data.applicant)
             setModalDetails({...modalDetails, memberData: data.applicant, loading: false, memberId: membership})
+        }
+
+        const onRedirect = (e) => {
+            e.preventDefault()
+            const memberId = e.target.getAttribute('data-memberid');
+            setRedirectDetails({
+                ...redirectDetails,
+                isRedirect: true,
+                memberId
+            })
         }
 
         return [{
@@ -41,9 +58,8 @@ const MembersTable = ({data}) => {
             },
             {
                 Header: 'Edit',
-                Cell: ({cell})=>{
+                Cell: ({cell}) => {
                     const {row: original} = cell;
-                    console.log('Original.original: ', original.original)
                     return (
                         <button className='btn btn-primary' onClick={onEdit}
                                 data-bs-toggle='modal'
@@ -55,18 +71,42 @@ const MembersTable = ({data}) => {
 
                     )
                 }
+            },
+            {
+                Header: 'Accounts',
+                Cell: ({cell}) => {
+                    const {row: original} = cell;
+                    return (
+                        <button className='btn btn-secondary'
+                                data-memberid={original.original.applicant.id}
+                                onClick={onRedirect}
+                        >
+                            View
+                        </button>
+                    )
+                }
             }
         ]
 
-    }, [modalDetails])
-
+    }, [modalDetails, redirectDetails])
 
 
     return (
         <div>
-            <Table data={data} columns={columns}/>
-            <Modal modalId='memberEdit' title='Edit Member Details' >
-               <MemberEditForm memberData={modalDetails.memberData} loading={modalDetails.loading} membershipId={modalDetails.memberId}/>
+            {
+                redirectDetails.isRedirect ? (
+                    <Redirect push to={{
+                        pathname: redirectDetails.pathname,
+                        state: {memberId: redirectDetails.memberId}
+                    }}/>
+                ) : (
+                    <Table data={data} columns={columns}/>
+                )
+            }
+
+            <Modal modalId='memberEdit' title='Edit Member Details'>
+                <MemberEditForm memberData={modalDetails.memberData} loading={modalDetails.loading}
+                                membershipId={modalDetails.memberId}/>
             </Modal>
         </div>
     );
