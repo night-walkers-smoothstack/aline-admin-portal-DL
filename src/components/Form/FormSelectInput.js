@@ -5,11 +5,11 @@ import {useFormContext} from 'react-hook-form';
 const FormSelectInput = ({data}) => {
     const {register, formState: {errors}} = useFormContext();
     const {
-        id, label, options
+        id, label, options, disabled
     } = data
     return (
         <div className='form-floating'>
-            <select className='form-select bg-white' aria-label={id} defaultValue={options[0].value} {...register(id)}>
+            <select className='form-select' aria-label={id} defaultValue={options[0].value} {...register(id)} disabled={disabled}>
                 {
                     options.map((opt, index) =>(
                         <option key={index} value={opt.value}>{opt.name}</option>

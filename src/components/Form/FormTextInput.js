@@ -6,7 +6,7 @@ const FormTextInput = ({data}) => {
     const {register, formState: {errors}} = useFormContext();
 
     const {
-        id, label, type,
+        id, label, type, disabled
     } = data;
 
     return (
@@ -16,9 +16,10 @@ const FormTextInput = ({data}) => {
                     id={id}
                     name={id}
                     type={type}
-                    className='form-control rounded-1 bg-white'
+                    className='form-control rounded-1'
                     {...register(id)}
                     placeholder={label}
+                    disabled={disabled}
                 />
                 <label htmlFor={id}>{label}</label>
             </div>

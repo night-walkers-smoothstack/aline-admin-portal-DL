@@ -34,6 +34,14 @@ const UserAPI =  {
         }catch (e){
             console.error(e.response)
         }
+    },
+
+    getUserById: async function(userId) {
+        try{
+            return await axios.get(`/api/users/${userId}`)
+        }catch (e) {
+            console.error(e.response)
+        }
     }
 }
 

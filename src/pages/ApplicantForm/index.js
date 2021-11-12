@@ -31,7 +31,8 @@ const Index = () => {
         }
         delete applicationRequest.applicants[0]?.applicationType;
         try {
-            console.log(applicationRequest)
+
+            console.log('applicant Request: ', applicationRequest)
             const res = await API.Application.newApplicant(applicationRequest)
             if (res.status === 201) {
                 await MySwal.fire({

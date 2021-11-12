@@ -36,10 +36,7 @@ const Index = options => {
     }
 
     const onSubmit = async (data) => {
-        console.log('Submit Data: ', data)
-
         mutate(data)
-
     }
 
 

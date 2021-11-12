@@ -13,7 +13,6 @@ const Index = () => {
 
     const fetchUsers = async () => {
         const {data} = await API.User.getUsers(pages)
-        console.log('res.data is: ', data)
         return data;
     }
 
@@ -21,7 +20,6 @@ const Index = () => {
         ['users', pages.page],
         fetchUsers,
         {keepPreviousData: true, staleTime: 5000})
-
 
 
     return (

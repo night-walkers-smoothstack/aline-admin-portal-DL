@@ -4,6 +4,7 @@ import './sidebar.css';
 import Navigation from './Navigation';
 import UseWindowSize from '../../utils/useWindowSize';
 import QuickMenu from'../QuickMenu'
+import {UseUserSession} from '../../utils/UserContext';
 
 /**
  * Sidebar navigation for application uses standard styling
@@ -17,6 +18,7 @@ const Index = ({children}) => {
     const OPEN_NAV_CLASS = 'is-nav-open';
     const footerRef = createRef();
     const contentRef = createRef();
+    const {logoutMethod} = UseUserSession();
 
     const handleToggle = () => {
         const wrapper = wrapperRef.current;
@@ -99,7 +101,7 @@ const Index = ({children}) => {
                         <li>
                             <hr className="dropdown-divider"/>
                         </li>
-                        <li><a className="dropdown-item" href="/">Sign out</a></li>
+                        <li><button className="dropdown-item" onClick={logoutMethod}>Sign out</button></li>
                     </ul>
                 </div>
 
