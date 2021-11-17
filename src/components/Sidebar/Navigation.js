@@ -25,6 +25,10 @@ const Navigation = () => {
         {
             link: '/account',
             display: 'Accounts'
+        },
+        {
+            link: '/chat',
+            display: 'Chat'
         }
     ]
 

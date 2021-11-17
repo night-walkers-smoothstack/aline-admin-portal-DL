@@ -14,6 +14,7 @@ you need to configure an env with following values
 - `EXTEND_ESLINT: true`
 - `REACT_APP_API_BASEURL`
 - `REACT_APP_TOKEN_NAME`
+- `REACT_APP_BROKER_URL`
 - `SONAR_TOKEN`
 - `SONAR_HOST_URL`
 
@@ -24,8 +25,10 @@ Values with the `SONAR` prefix are values from a project setup using Sonarqube.
 As part of the Aline Financial project you will need the following repositories installed and running to use all features 
 in the application.
 
-- Config-server
 - Aline-user-microservice
+- Aline-bank-microservice
+- Aline-account-microservice
+- Aline-underwriter-microservice
 - Aline-gateway
 
 ## Available Scripts
@@ -74,3 +77,4 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 - [React-table](https://react-table.tanstack.com/)
 - [Sweetalert2](https://sweetalert2.github.io/)
 - [Yup](https://www.npmjs.com/package/yup)
+- [StompJs](https://stomp-js.github.io/api-docs/latest/)

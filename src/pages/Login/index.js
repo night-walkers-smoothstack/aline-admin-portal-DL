@@ -3,6 +3,7 @@ import API from '../../utils/API';
 import {Redirect} from 'react-router-dom';
 import TextInput from '../../components/TextInput';
 import './login.css'
+import {Helmet} from 'react-helmet';
 
 const Index = () => {
     const [userDetails, setUserDetails] = useState({username: '', password: ''})
@@ -35,6 +36,13 @@ const Index = () => {
 
     return (
         <div className=' login '>
+            <Helmet>
+                <title>Login | Aline Financial</title>
+                <meta
+                    name='description'
+                    content='Login page for Aline Financial'
+                />
+            </Helmet>
             {
                 onSuccess.Redirect ? <Redirect to={onSuccess.Redirect}/> :
 

@@ -27,6 +27,21 @@ const UserAPI =  {
             const errorMsg = e?.response?.data[0] || e.message()
             return new Error(errorMsg)
         }
+    },
+    getUsers: async function (pageable) {
+        try{
+            return await axios.get('/api/users', {params: pageable})
+        }catch (e){
+            console.error(e.response)
+        }
+    },
+
+    getUserById: async function(userId) {
+        try{
+            return await axios.get(`/api/users/${userId}`)
+        }catch (e) {
+            console.error(e.response)
+        }
     }
 }
 

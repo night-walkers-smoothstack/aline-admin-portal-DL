@@ -18,7 +18,7 @@ const FormEmailInput = ({ data}) => {
                     type='email'
                     {...register(id)}
                     placeholder={label}
-                    className='form-control rounded-1'
+                    className='form-control rounded-1 bg-white'
                 />
                 <label htmlFor={id}>{label}</label>
             </div>
