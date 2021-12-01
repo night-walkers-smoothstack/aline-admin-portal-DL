@@ -44,8 +44,7 @@
     "test:CI": "npm run test:coverage && npm run test:lintReport && npm run sonar",
     "eject": "react-scripts eject",
     "styleguide": "styleguidist server",
-    "styleguide:build": "styleguidist build",
-    "sonar": "node sonar-project.js"
+    "styleguide:build": "styleguidist build"
   },
   "eslintConfig": {
     "extends": [
